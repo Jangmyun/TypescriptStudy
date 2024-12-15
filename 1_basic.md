@@ -83,3 +83,49 @@ const b = any = true;
 // 허용 됨 any
 a+b
 ```
+
+### 타입스크립트에서만 존재하는 타입 (type checker와의 소통)
+
+### `unknown`
+
+##### api로부터 응답을 받아야하는데 응답의 타입을 모르는 경우에 사용할 수 있다.
+
+```ts
+let a : unknown;
+
+// let b = a+1; 을 허용하지 않음
+if(typeof(a) === 'number'){
+  let b = a+1;
+}
+if(typeof(a)=== 'string'){
+  let b = a.toUpperCase();
+}
+```
+
+##### 타입스크립트로부터 보호를 받는데, 어떤 작업 전에 해당 변수의 타입을 먼저 확인하는 방식
+
+##### `unknown` 타입의 변수를 체크하는 코드 내부에서는 에러가 발생하지 않는다.
+
+
+
+### `void`
+
+```ts
+function hello(){
+  console.log("x");
+}
+```
+
+##### 리턴 값이 없는 함수의 경우 타입스크립트가 자동으로 void 함수임을 인식
+
+### `never`
+
+##### 함수가 절대 return하지 않을 때 발생 (exception을 처리하는 함수같은 곳)
+
+```ts
+function hello():never{
+	// return "X"; 는 작동하지 않음
+  throw new Error("X");
+}
+```
+
